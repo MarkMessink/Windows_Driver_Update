@@ -10,7 +10,7 @@
 
     Version history:
     1.0.0 - (2022-12-21) Initial Script
-	1.0.1 - (21-12-2022) Script verniewd
+	1.0.1 -
 	1.1.0 - 
 
 .DESCRIPTION
@@ -75,7 +75,7 @@ If(!(test-path $logpath))
 }
 
 # Add date + time to Logfile
-$TimeStamp = "{0:yyyyMMdd-HHmm}" -f (get-date)
+$TimeStamp = "{0:yyyyMMdd}" -f (get-date)
 $logFile = "$logpath\" + "$TimeStamp" + "_" + "$NameLogfile"
 
 # Start Transcript logging
@@ -94,22 +94,23 @@ If ($WindowsBuild -ge $LowestWindowsBuild -And $WindowsBuild -le $HighestWindows
 #################### Start base script ################################
 
 #################### Start uitvoeren script code ####################
-Write-Output "-------------------------------------------------------------------------------------"
-Write-Output "### Start uitvoeren script code ###"
-Write-Output "-------------------------------------------------------------------------------------"
+Write-Output "#####################################################################################"
+Write-Output "### Start uitvoeren script code                                                   ###"
+Write-Output "#####################################################################################"
 
 	Write-Output "-------------------------------------------------------------------"
 	Write-Output "----- Install NuGet Provider"
-	Install-PackageProvider -Name NuGet -Force -Verbose
+	Install-PackageProvider -Name NuGet -Force
 	Write-Output "----- Install PSWindowsUpdate"
-	Install-Module -Name PSWindowsUpdate -Force -Verbose
+	Install-Module -Name PSWindowsUpdate -Force
 	Write-Output "----- Install Windows Updates (no reboot)"
-	Get-WindowsUpdate -AcceptAll -UpdateType Driver -Download -Install -IgnoreReboot -verbose | FT
+	Get-WindowsUpdate -AcceptAll -UpdateType Driver -Download -Install -IgnoreReboot | FT
+	Write-Output "----- Install Windows Updates Ready"
     Write-Output "-------------------------------------------------------------------"
 
-Write-Output "-------------------------------------------------------------------------------------"
-Write-Output "### Einde uitvoeren script code ###"
-Write-Output "-------------------------------------------------------------------------------------"
+Write-Output "#####################################################################################"
+Write-Output "### Einde uitvoeren script code                                                   ###"
+Write-Output "#####################################################################################"
 #################### Einde uitvoeren script code ####################
 
 #################### End base script #######################
